@@ -1,0 +1,31 @@
+In total, there will be four parts to this project:
+1) Creating Static Components
+2) Passing Information to Components
+3) Setting the State of Ravenous Components
+4) Interacting with the Yelp API
+
+----------------------------------------------------------------------------
+------------------- 1) Creating Static Components -------------------
+----------------------------------------------------------------------------
+Create a React App
+    1. Start by creating a React app using the create-react-app package in your preferred terminal.
+        > create-react-app ravenous
+    2. In another terminal window, cd into the Ravenous directory and type the following command:
+        > npm start
+    3. Replace the current favicon located at public/favicon.ico with this icon. Make sure you save the new image as favicon.ico.
+Add a CSS Reset
+    1. add a reset.css file in the public/ directory to ensure our app is styled the same in every browser. Copy and paste this CSS into reset.css.
+    2. Link to reset.css in the index.html file that’s also located in the public/ directory.
+
+    
+----------------------------------------------------------------------------
+------------------- 2) Passing Information to Components -------------------
+----------------------------------------------------------------------------
+
+----------------------------------------------------------------------------
+------------------- 3) Setting the State of Ravenous Components -------------------
+----------------------------------------------------------------------------
+
+----------------------------------------------------------------------------
+------------------- 4) Interacting with the Yelp API -------------------
+----------------------------------------------------------------------------
