@@ -133,6 +133,21 @@ Completion and Reflection
 ------------------- 2) Passing Information to Components -------------------
 ----------------------------------------------------------------------------
 
+Create businesses Array
+    When the Yelp API is implemented, a list of businesses will be returned to App.js.
+    1. Open Business.js. Cut the entire business object and paste it into App.js. Make sure to paste it right after the imports and above the App class declaration.
+    We’ll refactor BusinessList's div to remove some of the component repetition.
+    2. Go back to App.js. Under the business object, create a businesses array. The array should hold six references to the business object.
+Setting a BusinessList Prop
+    1. In app.js, add a businesses property to the <BusinessList /> component inside of the render() method. Set the property equal to the businesses array. (Don’t forget your curly braces!)
+Add Functionality to the BusinessList Prop
+    1. Open BusinessList.js. Remove everything inside of the BusinessList div (the repeated components). Inside of the BusinessList div, access the businesses prop and call the .map() method on it.
+    2. Inside of the map() method, pass a callback function with one parameter called business.
+    3. The callback function should return a <Business /> component. The returned <Business /> should have a property called business. Set the property equal to the parameter of the callback function. (Don’t forget your curly braces and semicolon!)
+Modifying Business.js using Props
+    1. Business information now has to be accessed via the business prop you set in BusinessList.js. Modify all statements (like the one in the example above) by prepending them with this.props.
+Completion and Reflection
+
 ----------------------------------------------------------------------------
 ------------------- 3) Setting the State of Ravenous Components -------------------
 ----------------------------------------------------------------------------
