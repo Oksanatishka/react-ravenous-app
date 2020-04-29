@@ -1,5 +1,10 @@
 In total, there will be four parts to this project:
 1) Creating Static Components
+    Ravenous will be composed of four different components interacting with each other:
+        <Business />
+        <BusinessList />
+        <SearchBar />
+        <App /> (created by default with create-react-app)
 2) Passing Information to Components
 3) Setting the State of Ravenous Components
 4) Interacting with the Yelp API
@@ -16,8 +21,114 @@ Create a React App
 Add a CSS Reset
     1. add a reset.css file in the public/ directory to ensure our app is styled the same in every browser. Copy and paste this CSS into reset.css.
     2. Link to reset.css in the index.html file that’s also located in the public/ directory.
+Add Google Fonts
+    1. You’ll also need to add a couple of Google fonts that the app will use. In index.html, add the following links to add the necessary Google fonts:
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,500,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
+Create Business.js
+    1. cd into the src/ directory. Create a new folder called components. 
+    2. Each component should have its own folder inside of components/. Inside of the components/ directory create a new folder called App.
+        Move App.js and App.css to the App/ folder and update the path in index.js accordingly.
+        Remove App.test.js from the src/ folder, as you will not use it in this project.
+    3. Inside of components/, create a new folder called Business. cd into the Business/ directory and create two files:
+        Business.js
+        Business.css
+Create a Sample Business
+    The purpose of the <Business /> component is to represent how a business (a restaurant) in Ravenous will be formatted and styled. For now, we’ll hard code a single business listing. Later, you’ll update it dynamically using the Yelp API.
+    1. Open Business.js in your text editor. Create a JavaScript object called business. Copy the following keys and values and add them to business:
+            imageSrc: 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg',
+            name: 'MarginOtto Pizzeria',
+            address: '1010 Paddington Way',
+            city: 'Flavortown',
+            state: 'NY',
+            zipCode: '10101',
+            category: 'Italian',
+            rating: 4.5,
+            reviewCount: 90
+Import React
+    1. At the very top of your Business.js file (line 1), import React.
+Create the <Business /> Component
+    1. Below the business object, create a React component called Business. The component should extend React.Component.
+    2. Add a .render() method to the Business component.
+    3. Inside of the .render() method, add a return statement with JSX that renders this HTML.
+Import Business.css
+    1. Create a new file called Business.css in the Business/ directory. Add this CSS to to the Business.css file.
+    2. At the top of Business.js (line 2), import the Business.css file. 
+Export the <Business /> Component
+    1. At the bottom of the file (last line), export the Business component.
+Create BusinessList.js and BusinessList.css
+    1. Inside of BusinessList folder, create two files:
+        BusinessList.js
+        BusinessList.css
+    2. Add the following CSS to BusinessList.css:
+        .BusinessList {
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          margin: 4.4rem 10%;
+        }
+Import React and BusinessList.css
+    1. Start by opening BusinessList.js. At the top of the file, import the following (in this order):
+        The React library
+        BusinessList.css
+Import the <Business /> Component
+Create the <BusinessList /> Component
+    1. Use the React library to create a component called BusinessList.
+    2. Inside of the component, add a render() method.
+Rendering <Business />
+    1. Inside of the .render() method, add a return statement with JSX that renders this HTML.
+Export the <BusinessList /> Component
+Create SearchBar.js
+    1. Inside of SearchBar folder, create two files:
+        SearchBar.js
+        SearchBar.css
+    2. Add this CSS to the SearchBar.css file. Here are the two images you’ll need for the project: Ravenous (desktop size), Ravenous (mobile size).
+Import React and SearchBar.css
+    1. Start by opening SearchBar.js. At the top of the file, import the following (in this order):
+        The React library
+        SearchBar.css
+Create an Options Object
+    The search bar will communicate with the Yelp API, but you’ll build the functionality to communicate with the API in a later project. Today, you’ll build part of the structure that’s needed to communicate with the Yelp API.
+    Specifically, requests to the Yelp API must follow formatting and naming conventions set by the API. 
+    https://www.yelp.com/developers/documentation/v3/business_search
+    For example, the search bar should allow users to search businesses by:
+        Best Match
+        Highest Rated
+        Most Reviewed
+    To achieve this, you’ll create an object with keys and values that conform to what the API expects to receive(as shown in the documentation provided above).
+    1. Start by creating an object called sortByOptions.
+    2. The object should have three keys (in this order):
+            Best Match
+            Highest Rated
+            Most Reviewed
+        Make sure the keys are strings.
+    3. Set the values. Use the documentation to help you set the values of those keys. The sort_by entry in the table of the “Parameters” section will be helpful. The values should be strings.
+Create the <SearchBar /> Component
+Create renderSortByOptions()
+    1. Create a method called renderSortByOptions() in the body of the component declaration.
+    2. The method should iterate through the keys and values of the sortByOptions object and return a list item. The list item elements should use the keys as an attribute, and the values as content. Let’s start building it out. Start adding a return statement (no parentheses).
+    3. Call the keys() method on the JavaScript Object library. Pass in sortByOptions as the argument.
+    4. Now that you have access to the keys, you’ll iterate through them using the map() method. Call the map() method by chaining it to the end of the line you just wrote.
+    5. Pass a callback function to the map() method as an argument. The callback function should have one parameter called sortByOption. The callback function should also use arrow syntax.
+    6. Now let’s store the object values in a variable. Inside of the callback function, access the sortByOptions values using the sortByOption parameter of the callback function. Store values in variable called sortByOptionValue.
+    7. On the next line, return a <li> element. The list item should have an attribute called key set to sortByOptionValue (don’t forget to use curly braces to inject JavaScript). The content of the list item should be sortByOption. Again, use curly braces to achieve the JavaScript injection.
+Render the <SearchBar /> Component
+    1. Start by adding a render() method.
+    2. Inside of the .render() method, add a return statement with JSX that renders this HTML.
+Export the <SearchBar /> Component
+Import React and App.css
+    1. At the top of App.js, import the the following (in this order):
+            The React library
+            App.css
+        Make sure that App.css has this CSS.
+Import <BusinessList /> and <SearchBar />
+Modify the Default <App /> Component
+    1. Delete everything inside of the return statement.
+Render Ravenous
+    1. Inside of the App.js .render() method, return JSX that renders this HTML.
+Export <App />
+Completion and Reflection
 
-    
 ----------------------------------------------------------------------------
 ------------------- 2) Passing Information to Components -------------------
 ----------------------------------------------------------------------------
