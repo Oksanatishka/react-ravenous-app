@@ -212,6 +212,7 @@ Completion and Reflection
 ------------------- 4) Interacting with the Yelp API -------------------
 ----------------------------------------------------------------------------
     Portions of this project will need to be completed on the Yelp website (developer documentation).
+    https://www.yelp.com/developers/documentation/v3/business_search
 Create a util Directory
     We’ll store the Yelp functionality in its own directory.
     1. Create a folder called util in the src/ directory.
