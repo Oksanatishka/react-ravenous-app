@@ -152,6 +152,62 @@ Completion and Reflection
 ------------------- 3) Setting the State of Ravenous Components -------------------
 ----------------------------------------------------------------------------
 
+Add a SearchBar Constructor
+    1. Open SearchBar.js. Add a constructor in the SearchBar component. Make sure to pass the constructor props and call super(props) on the first line.
+    2. Inside of the constructor, set the initial state of the search bar. Use this.state and set it equal to an empty object.
+    3. Add three keys to the state object you just created. The keys should be term, location, and sortBy. The first two keys should be set to empty strings (''). The last key should be set to 'best_match'. This completes the constructor.
+Get a Sort Option's Class
+    Click on the sort options above the two input elements on the Ravenous page. You’ll notice that nothing happens. They remain the same color and there is no way to determine which option has been selected.
+    1. Move the sortByOptions object to the last line of the constuctor() and change it from a local variable to a member variable using this. Be sure to also update the two references to sortByOptions in the renderSortByOptions() method to now use this. Update the two references to sortByOptions in the renderSortByOptions() method to now use this.
+        Then, add a new method called getSortByClass after the constructor() that accepts one parameter called sortByOption.
+    2. Inside, use an if statement to check if the state value of sortBy is equal to the provided sortByOption. If it is, return 'active', otherwise, return an empty string ('').
+Handle a Change in Sort Option
+    1. Add a new method called handleSortByChange. It should accept a parameter called sortByOption.
+    2. Inside of .handleSortByChange(), update the state by calling .setState(). Pass in an object to setState(). The object should set sortBy to the value of the method’s argument.
+Set the Class Name of a Sort Option
+    1. Take a look at the .renderSortByOptions() method.
+        Add a className attribute to the <li> element. Set it equal to the return value of the getSortByClass() method. Pass in sortByOptionValue as the argument.
+        This will conditionally style each sort by option, displaying to the user which sorting option is currently selected.
+Handle a Sorting Option Change (On Click)
+    This will allow us to both bind to the current value of this (as we usually do in the constructor()) but also bind the current sortByOptionValue as the first argument to the method call, ensuring the method is called with the appropriate value when clicked.
+    1. Add an onClick attribute to the <li> element. Set it equal to handleSortByChange.bind(). Pass in two arguments to .bind(): this and sortByOptionValue.
+Handle a Term or Location Change
+    1. Under the handleSortByChange() method, add two new methods:
+        handleTermChange()
+        handleLocationChange()
+        Since both will be related to events being triggered, both should accept event as an argument.
+    2. Inside of each method, update the state using setState(). Pass in an empty object into each call of setState().
+    3. In .handleTermChange(), the object passed to .setState() should have a key called term. Set the key to a value of event.target.value.
+    4. Do the same thing in .handleLocationChange(), but name the key location instead.
+Bind Methods in the Constructor
+    Since both of these methods use this, you’ll need to bind them. 
+    1. Above the sortByOptions object in the constructor(), bind both methods (handleTermChange() and handleLocationChange()) to the current value of this.
+Handle a Term or Location Change (onChange)
+    1. Inside of the return statement of the component’s render() method, add onChange attributes to each <input> element:
+        Set the first attribute to handle term changes.
+        Set the second attribute to handle location changes.
+searchYelp() in the App Component
+    The “Let’s Go” button also needs to provide some sort of feedback to the user. Currently, clicking on it doesn’t do anything.
+    1. In App.js, add a method called searchYelp() in the class declaration of the App component. (Place it above the render() method.)
+    2. searchYelp() should accept three parameters: term, location, and sortBy.
+    3. Inside of searchYelp(), log a message to the console that uses the three parameters.
+        Here’s an example message: Searching Yelp with Pizza, Brooklyn, best_match
+Set the searchYelp Prop in SearchBar
+    1. Add a searchYelp property to the SearchBar component in the return statement of .render(). Set it equal to this.searchYelp.
+Handle a Search
+    1. In SearchBar.js, add a method called handleSearch(). Place it under the handleLocationChange() method.
+    2. .handleSearch() should accept an event parameter. Inside of .handleSearch(), call the passed down .searchYelp() method (located on props). Pass in the current state values of term, location, and sortBy as arguments.
+    3. On the next line, call event.preventDefault() to prevent the default action of clicking a link from triggering at the end of the method.
+Bind handleSearch()
+    1. Next, bind the handleSearch() method. Place it under three methods you previously bound.
+Handle a Search (onClick)
+    1. Add an onClick attribute to the “Let’s Go” button. Set it equal to this.handleSearch.
+Completion and Reflection
+    Review what you built:
+        Added visual feedback for the sorting options at the top of the search bar
+        Set the state of sorting options and input elements
+        Simulated a search query with the “Let’s Go” button
+
 ----------------------------------------------------------------------------
 ------------------- 4) Interacting with the Yelp API -------------------
 ----------------------------------------------------------------------------
